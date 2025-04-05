@@ -4,6 +4,7 @@ class PokemonInfo {
   final String type;
   final int height;
   final int weight;
+  final int baseExperience;
 
   PokemonInfo({
     required this.image,
@@ -11,6 +12,7 @@ class PokemonInfo {
     required this.type,
     required this.height,
     required this.weight,
+    required this.baseExperience,
   });
   factory PokemonInfo.fromJson(Map<String, dynamic> json) {
     return PokemonInfo(
@@ -19,6 +21,7 @@ class PokemonInfo {
       type: json['types'][0]['type']['name'],
       height: json['height'],
       weight: json['weight'],
+      baseExperience: json['base_experience'],
     );
   }
 }

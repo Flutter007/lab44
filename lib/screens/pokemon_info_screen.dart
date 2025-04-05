@@ -34,6 +34,7 @@ class _PokemonInfoScreenState extends State<PokemonInfoScreen> {
       builder: (ctx, snapshot) {
         return PokemonInfoWidget(
           pokemonInfo: snapshot.data,
+          error: snapshot.hasError,
           isFetching: snapshot.connectionState == ConnectionState.waiting,
         );
       },
