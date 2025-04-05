@@ -2,8 +2,8 @@ class PokemonInfo {
   final String image;
   final String name;
   final String type;
-  final String height;
-  final String weight;
+  final int height;
+  final int weight;
 
   PokemonInfo({
     required this.image,
