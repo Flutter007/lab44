@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lab44/helpers/request.dart';
 import 'package:lab44/screens/pokemon_info_screen.dart';
 import 'package:lab44/widgets/custom_tile.dart';
-
 import 'models/pokemon.dart';
 
 class Lab44 extends StatefulWidget {
@@ -16,7 +15,7 @@ class Lab44 extends StatefulWidget {
 class _Lab44State extends State<Lab44> {
   List<Pokemon> pokemons = [];
   bool isLoading = true;
-  String? link = '';
+  String? link;
   String? error;
 
   @override
@@ -74,31 +73,36 @@ class _Lab44State extends State<Lab44> {
       );
     } else {
       content = Padding(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         child: Center(
           child: SafeArea(
             child: Column(
               children: [
                 Expanded(
                   child: ListView.separated(
-                    itemCount: pokemons.length,
                     separatorBuilder: (ctx, i) => Divider(),
-                    itemBuilder:
-                        (ctx, i) => CustomTile(
+                    itemBuilder: (ctx, i) {
+                      if (i < pokemons.length) {
+                        return CustomTile(
                           onTap: () => goToInfo(pokemons[i]),
                           title: '${i + 1}. ${pokemons[i].name.toUpperCase()}',
-                        ),
+                        );
+                      } else {
+                        return Center(
+                          child: IconButton(
+                            onPressed: fetchNext,
+                            icon: Icon(
+                              Icons.cloud_download,
+                              size: 36,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    itemCount: pokemons.length + (link == null ? 0 : 1),
                   ),
                 ),
-                if (link != null)
-                  IconButton(
-                    onPressed: fetchNext,
-                    icon: Icon(
-                      Icons.cloud_download,
-                      size: 42,
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
               ],
             ),
           ),

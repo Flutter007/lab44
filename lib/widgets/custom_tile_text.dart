@@ -13,7 +13,8 @@ class CustomTileText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleMedium = Theme.of(context).textTheme.titleMedium!;
+    final theme = Theme.of(context);
+    final titleMedium = theme.textTheme.titleMedium!;
     return Padding(
       padding: EdgeInsets.all(6),
       child: ListTile(
@@ -25,6 +26,7 @@ class CustomTileText extends StatelessWidget {
         subtitle: Text(
           subtitle.toUpperCase(),
           style: GoogleFonts.domine(fontSize: 20, color: Colors.red),
+          maxLines: 2,
         ),
       ),
     );

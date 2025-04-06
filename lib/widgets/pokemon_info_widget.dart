@@ -18,7 +18,7 @@ class PokemonInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget content;
-
+    final theme = Theme.of(context);
     if (isFetching) {
       content = Center(child: CircularProgressIndicator());
     } else if (error) {
@@ -28,7 +28,19 @@ class PokemonInfoWidget extends StatelessWidget {
       content = SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(pokemon.image, fit: BoxFit.cover, height: 240),
+            Container(
+              margin: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: theme.colorScheme.tertiary, width: 3),
+                color: theme.colorScheme.surface,
+              ),
+              child: Image.network(
+                pokemon.image,
+                fit: BoxFit.cover,
+                height: 200,
+              ),
+            ),
             CustomTileText(title: 'Имя :', subtitle: pokemon.name),
             CustomTileText(title: 'Тип :', subtitle: pokemon.type),
             CustomTileText(

@@ -19,7 +19,7 @@ class CustomTile extends StatelessWidget {
       ),
       child: ListTile(
         onTap: onTap,
-        title: Expanded(child: Text(title, style: GoogleFonts.rowdies())),
+        title: Text(title, style: GoogleFonts.rowdies(), maxLines: 2),
       ),
     );
   }
